@@ -64,7 +64,7 @@ const images = [
   },
 ];
 
-//! =====. Створення розмітки.  =============================================
+// =====. Створення розмітки.  =============================================
 
 const ulElem = document.querySelector(".gallery");
 const imgElem = document.querySelector("img");
@@ -94,7 +94,7 @@ const markup = imagesTemplate(images);
 // вставляє розмітку в html index
 ulElem.insertAdjacentHTML("afterbegin", markup);
 
-//! ============.  Делегування. ======================================
+// ============.  Делегування. ======================================
 
 ulElem.addEventListener("click", (event) => {
   event.preventDefault();
@@ -106,7 +106,7 @@ ulElem.addEventListener("click", (event) => {
   showModal(src);
 });
 
-//! ============= Модальне Вікно. ================================
+// ============= Модальне Вікно. ================================
 
 function showModal(src) {
   const modalWindow = basicLightbox.create(`
