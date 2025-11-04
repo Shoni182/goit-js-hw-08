@@ -67,7 +67,6 @@ const images = [
 // =====. Створення розмітки.  =============================================
 
 const ulElem = document.querySelector(".gallery");
-const imgElem = document.querySelector("img");
 
 // функція створює темплейт та HTML рядок та підставляє значення
 function imageTemplate(image) {
@@ -76,7 +75,6 @@ function imageTemplate(image) {
     <img
       class="gallery-image"
       src="${image.preview}"
-    log
       data-source="${image.original}" 
       alt="${image.description}"
     />
@@ -98,19 +96,20 @@ ulElem.insertAdjacentHTML("afterbegin", markup);
 
 ulElem.addEventListener("click", (event) => {
   event.preventDefault();
-  const liElem = event.target.closest(`li`);
-  if (!liElem) return;
 
-  const src = event.target.dataset.source;
-
-  showModal(src);
+  if (event.target.nodeName === "IMG") {
+    const imgLink = event.target.dataset.source;
+    showModal(imgLink);
+  } else {
+    return;
+  }
 });
 
 // ============= Модальне Вікно. ================================
 
-function showModal(src) {
+function showModal(imgLink) {
   const modalWindow = basicLightbox.create(`
-    <img src="${src}" class="modal-image" width="1112" height="640">
+    <img src="${imgLink}" class="modal-image" width="1112" height="640">
 `);
 
   modalWindow.show();
